@@ -1,0 +1,173 @@
+<% layout("./layouts/boiler.ejs") %>
+
+
+<!-- ---------------- HERO SECTION ---------------- -->
+<section id="hero" class="vh-100 d-flex align-items-center justify-content-center premium-hero">
+  <div class="text-center hero-inner">
+    <h1 class="display-4 fw-bold hero-title">
+      I am <span class="name-highlight"><%= name %></span><br>
+      <span class="role">Data Scientist</span>
+    </h1>
+
+    <div class="typed-wrap mt-3">
+      <span id="typed" class="typed-text"
+        data-words='["Python " ,"Pandas ","JavaScript ","Java ","Data Structures & Algorithms ","SQL ","NumPy ","Power BI "]'>
+      </span>
+    </div>
+
+    <p class="mt-4 quote fs-5 premium-quote">
+      "My passion lies in transforming complex datasets into meaningful insights that drive business growth and smarter dicisions".
+    </p>
+  </div>
+</section>
+
+
+<!-- ---------------- ABOUT SECTION ---------------- -->
+<section id="about" class="vh-100 d-flex align-items-center justify-content-center premium-section">
+  
+  <div class="container text-center">
+    <h2 class="section-title text-center mb-5">About</h2>
+    <img src="https://res.cloudinary.com/dvi9fzt1v/image/upload/v1764674116/IMG-20251202-WA0000_uopifa.jpg" alt="Bhavesh Keche Profile" class="profile-img mb-4"/>
+
+    <h3 class="section-title mb-4">Bhavesh Keche</h3>
+    <p class="lead premium-text mt-3">
+     
+      Hello, I am Bhavesh Keche. I am currently studying in the second year of Computer Science Engineering. My journey from the first year has been full of exploring inventions and technology. After exploring different technologies, I decided to build my career as a Data Scientist. Currently, I am working on this technology. I am continuously learning new tools and improving my problem-solving skills, and I am excited to apply my knowledge to real-world projects and grow in the field of Data Science.
+     
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ---------------- SKILLS SECTION ---------------- -->
+<section id="skills" class="vh-100 d-flex align-items-center justify-content-center premium-section">
+  <div class="container ">
+    <h2 class="section-title text-center mb-5">Skills</h2>
+
+    <div class="row g-4 justify-content-center mt-4 mb-5" >
+
+      <% const s = skills?.length ? skills.slice(0,6) : [] %>
+
+      <% if (s.length) { s.forEach(skill => { %>
+        <div class="col-10 col-md-6 col-lg-4">
+          <div class="skill-card premium-card text-center p-4">
+         <img src="<%= skill.iconClass %>" alt="<%=skill.name  %>" class="skill-icon" style="width: 60px; height: 60px;" ><br>
+         <h6 style="color: rgb(208, 130, 173);"><%=skill.level %></h6>
+         <h5><%=skill.name  %></h5>
+          </div>
+        </div>
+      <% }) } else { %>
+
+        <!-- Default 3-card layout -->
+        <div class="col-10 col-md-6 col-lg-4">
+          <div class="skill-card premium-card text-center p-4">
+            <i class="fa-brands fa-js fa-3x mb-3"></i>
+            <h5>JavaScript</h5>
+          </div>
+        </div>
+
+        <div class="col-10 col-md-6 col-lg-4">
+          <div class="skill-card premium-card text-center p-4">
+            <i class="fa-brands fa-java fa-3x mb-3"></i>
+            <h5>Java</h5>
+          </div>
+        </div>
+
+        <div class="col-10 col-md-6 col-lg-4">
+          <div class="skill-card premium-card text-center p-4">
+            <i class="fa-solid fa-database fa-3x mb-3"></i>
+            <h5>MongoDB</h5>
+          </div>
+        </div>
+
+      <% } %>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ---------------- CERTIFICATES SECTION ---------------- -->
+<section id="certificates" class="vh-100 d-flex align-items-center justify-content-center premium-section">
+  <div class="container bt-5 mt-5" >
+   <h2 class="section-title text-center mb-5 mt-5 ">Certificate</h2>
+
+    <div class="row g-4 mt-4 justify-content-center ">
+
+      <% if (certs && certs.length) { %>
+        <% certs.forEach(c => { %>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="cert-card premium-card p-3">
+              <img src="<%= c.thumbnail %>" class="cert-img mb-3" alt="<%= c.title %>">
+              <h5><%= c.title %></h5>
+              <p class="text-muted small"><%= c.issuedBy %> • <%= c.date ? c.date.toDateString() : "" %></p>
+
+              <% if (c.filePath) { %>
+                <a class="btn btn-sm premium-btn mt-2" href="<%= c.filePath %>" target="_blank">View Certificate</a>
+              <% } %>
+
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="col-12">
+          <p class="text-center text-muted fs-5">No certificates added yet.</p>
+        </div>
+      <% } %>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ---------------- PROJECTS SECTION ---------------- -->
+<section id="projects" class="vh-100 d-flex align-items-center justify-content-center premium-section">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Projects</h2>
+
+    <div class="row g-4 mt-4 justify-content-center">
+
+      <% if (projects && projects.length) { projects.forEach(p => { %>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="project-card premium-card p-3">
+            <img src="<%= p.thumbnail %>" class="project-img mb-3" alt="<%= p.title %>">
+            <h5><%= p.title %></h5>
+            <p class="text-muted small mb-3"><%= p.description %></p>
+
+            <div class="d-flex gap-2 flex-wrap">
+              <% if (p.liveUrl) { %>
+                <a href="<%= p.liveUrl %>" class="btn btn-sm premium-btn-outline" target="_blank">Live Demo</a>
+              <% } %>
+
+              <% if (p.githubUrl) { %>
+                <a href="<%= p.githubUrl %>" class="btn btn-sm premium-btn" target="_blank">View Code</a>
+              <% } %>
+            </div>
+
+          </div>
+        </div>
+
+      <% }) } else { %>
+        <div class="col-12">
+          <p class="text-center text-muted fs-5">No projects added yet.</p>
+        </div>
+      <% } %>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ---------------- FOOTER ---------------- -->
+<footer class="py-4 text-center premium-footer">
+  © <%= new Date().getFullYear() %> <strong>Bhavesh Keche</strong> 
+  <br>
+  <div class="container" style="justify-content: space-around; display: flex; margin-top:2rem ;">
+<a href="https://www.linkedin.com/in/bhavesh-keche-b9593b32b" style="color: rgb(255, 255, 255);"> Linkedin - <i class="fa-brands fa-linkedin"  style="font-size: larger;color: rgb(168, 126, 62);"> </i> </a> 
+<a href="#" style="color: rgb(255, 255, 255);"> Git_Hub - <i class="fa-brands fa-github"  style="font-size: larger;color: rgb(169, 131, 74);"> </i> </a> 
+<a href="https://leetcode.com/progress/" style="color: rgb(255, 255, 255);"> Leet_Code - <i class="fa-solid fa-code"  style="font-size: larger;color: rgb(182, 138, 71);"> </i> </a>  
+</div><br>
+<p> @ All Rights Are reserve  2025-2026</p>
+</footer>

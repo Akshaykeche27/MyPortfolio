@@ -1,0 +1,56 @@
+<% layout("./layouts/boiler.ejs") %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+
+      <div class="card shadow form-card">
+        <div class="card-body">
+
+          <h2 class="text-center mb-4">Add New Project</h2>
+
+          <form action="/projects" method="POST" enctype="multipart/form-data">
+
+            <!-- Project Title -->
+            <div class="mb-3">
+              <label class="form-label">Project Title</label>
+              <input type="text" name="title" class="form-control" required>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label class="form-label">Project Description</label>
+              <textarea name="description" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <!-- Live URL -->
+            <div class="mb-3">
+              <label class="form-label">Live URL</label>
+              <input type="text" name="liveUrl" class="form-control">
+            </div>
+
+            <!-- Github URL -->
+            <div class="mb-3">
+              <label class="form-label">Github URL</label>
+              <input type="text" name="githubUrl" class="form-control">
+            </div>
+
+            <!-- Thumbnail -->
+            <div class="mb-3">
+              <label class="form-label">Thumbnail Image</label>
+              <input type="file" name="thumbnail" class="form-control" accept="image/*">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Add Project</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
