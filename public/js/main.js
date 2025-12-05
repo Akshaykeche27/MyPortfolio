@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       charIndex++;
       if (charIndex >= current.length) {
         forward = false;
-        // hold then start deleting
         setTimeout(tick, 800);
         return;
       }
@@ -23,8 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     el.textContent = current.slice(0, charIndex);
-    // speed slightly random to feel natural
     setTimeout(tick, forward ? 100 : 60);
   }
   tick();
 });
+
+// Navbar auto close on mobile
+document.addEventListener("DOMContentLoaded", () => {
+  const navbarElement = document.querySelector(".navbar-collapse");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (navbarElement.classList.contains("show")) {
+        const bsCollapse = new bootstrap.Collapse(navbarElement, { toggle: false });
+        bsCollapse.hide();
+      }
+    });
+  });
+});
+
+console.log("JS Loaded Successfully");
